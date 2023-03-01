@@ -2,13 +2,14 @@ import React from "react";
 
 export default function useSessionToken()
 {
-    const sessionLoginToken = sessionStorage.getItem("loginToken");
-    const [token, setToken] = React.useState(sessionLoginToken === null ? "" : sessionLoginToken);
+    const sessionStorageToken = sessionStorage.getItem("token");
+    const [token, setToken] = React.useState(sessionStorageToken ? JSON.parse(sessionStorageToken) : {});
 
     function setSessionToken(newToken)
     {
-        sessionStorage.setItem("loginToken", newToken);
-        setToken(newToken);
+        const newTokenValid = newToken?.clientId && newToken?.firstName && newToken?.surname && newToken?.tokenStr;
+        sessionStorage.setItem("token", newTokenValid ? JSON.stringify(newToken) : "");
+        setToken(newTokenValid ? newToken : {});
     }
 
     return [token, setSessionToken];

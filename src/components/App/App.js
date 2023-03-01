@@ -9,7 +9,7 @@ import Login from "../Login/Login";
 export default function App()
 {
     const [token, setToken] = useSessionToken();
-    let userName = token ? JSON.parse(token).firstName : "";
+    const userName = token.firstName ?? "";
 
     return (
         <div className="appContainer">
@@ -18,8 +18,8 @@ export default function App()
                 <Routes>
                     <Route exact path="/" element={<Shop />} />
                     <Route exact path="/shop" element={<Shop />} />
-                    <Route exact path="/cart" element={token ? <Cart /> : <Login setToken={setToken} />} />
-                    <Route exact path="/login" element={token ? <Navigate to="/" /> : <Login setToken={setToken} />} />
+                    <Route exact path="/cart" element={token.tokenStr ? <Cart /> : <Login setToken={setToken} />} />
+                    <Route exact path="/login" element={token.tokenStr ? <Navigate to="/" /> : <Login setToken={setToken} />} />
                 </Routes>
             </BrowserRouter>
         </div>

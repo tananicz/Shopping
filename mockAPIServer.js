@@ -17,7 +17,7 @@ app.post('/login', (req, res) => {
             clientId: 1,
             firstName: "Piotr",
             surname: "Kowalski",
-            token: 'urgu9843t9uons'
+            tokenStr: 'urgu9843t9uons'
         });
     }
     else

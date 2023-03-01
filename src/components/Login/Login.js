@@ -13,7 +13,7 @@ export default function Login(props)
         label.innerText = "Invalid credentials";
     }
     
-    function handleSubmit(event)
+    async function handleSubmit(event)
     {
         event.preventDefault();
 
@@ -28,34 +28,26 @@ export default function Login(props)
             }
         };
 
-        fetch("http://localhost:8080/login", xhrParams)
-            .then(res => {
-                res.json()
-                    .then(data => {
-                        if (data?.token && data?.firstName && data?.surname)
-                            props.setToken(JSON.stringify(data));
-                        else
-                            showError();
-                    })
-                    .catch(e => {
-                        showError()
-                    })
-            })
-            .catch(e => {
-                showError()
-            });
+        try
+        {
+            const response = await fetch("http://localhost:8080/login", xhrParams);
+            const data = await response.json();
+
+            if (data?.clientId && data?.firstName && data?.surname && data?.tokenStr)
+                props.setToken(data);
+        }
+        catch (e)
+        {
+            showError();
+        }
     }
 
     function handleChange(event)
     {
         if (event.target.id === "login")
-        {
             setLogin(event.target.value);
-        }
         else if (event.target.id === "password")
-        {
             setPassword(event.target.value);
-        }
     }
 
     return (
