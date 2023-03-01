@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import Shop from "../Shop/Shop";
 import Cart from "../Cart/Cart";
 import Login from "../Login/Login";
+import Checkout from "../Checkout/Checkout";
 import "./App.css"
 
 export default function App()
@@ -19,7 +20,8 @@ export default function App()
                 <Routes>
                     <Route exact path="/" element={<Shop />} />
                     <Route exact path="/shop" element={<Shop />} />
-                    <Route exact path="/cart" element={token.tokenStr ? <Cart /> : <Login setToken={setToken} />} />
+                    <Route exact path="/cart" element={<Cart />} />
+                    <Route exact path="/checkout" element={token.tokenStr ? <Checkout /> : <Login setToken={setToken} />} />
                     <Route exact path="/login" element={token.tokenStr ? <Navigate to="/" /> : <Login setToken={setToken} />} />
                 </Routes>
             </BrowserRouter>
