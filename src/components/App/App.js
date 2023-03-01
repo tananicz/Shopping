@@ -18,8 +18,8 @@ export default function App()
                 <Routes>
                     <Route exact path="/" element={<Shop />} />
                     <Route exact path="/shop" element={<Shop />} />
-                    <Route exact path="/cart" element={token === "" ? <Login setToken={setToken} /> : <Cart />} />
-                    <Route exact path="/login" element={token === "" ? <Login setToken={setToken} /> : <Navigate to="/" />} />
+                    <Route exact path="/cart" element={token ? <Login setToken={setToken} /> : <Cart />} />
+                    <Route exact path="/login" element={token ? <Login setToken={setToken} /> : <Navigate to="/" />} />
                 </Routes>
             </BrowserRouter>
         </div>
