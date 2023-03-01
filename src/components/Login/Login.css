@@ -1,0 +1,10 @@
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#errorLabel {
+    display: none;
+    color: #f00;
+}
