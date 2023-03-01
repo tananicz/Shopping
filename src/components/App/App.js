@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import Shop from "../Shop/Shop";
 import Cart from "../Cart/Cart";
 import Login from "../Login/Login";
+import "./App.css"
 
 export default function App()
 {

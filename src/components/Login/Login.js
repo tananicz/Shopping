@@ -53,7 +53,7 @@ export default function Login(props)
     return (
         <div>
             <form onSubmit={handleSubmit} className="loginForm">
-            <h2>Please provide login & password</h2>
+                <h2>Please provide login & password</h2>
                 <label id="errorLabel"></label>
                 <label htmlFor="login">Login</label>
                 <input type="text" value={login} onChange={handleChange} id="login" />

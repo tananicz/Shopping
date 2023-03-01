@@ -7,7 +7,10 @@ export default function Header(props)
     return (
         <header className="appHeader">
             <div>
-                <h1>This is the main header app - maybe put some header here</h1>
+                <img src="shop_logo.jpg" alt="Shop logo" class="shopLogo" />
+            </div>
+            <div class="pageTitle">
+                <h1>ACME Shop</h1>
             </div>
             {props.userName && <Logout userName={props.userName} setToken={props.setToken} />}
         </header>

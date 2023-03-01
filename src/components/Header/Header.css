@@ -1,6 +1,26 @@
 .appHeader {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    background-color: darkcyan;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.appHeader > div {
+    margin-left: 20px;
+}
+
+.appHeader h1 {
+    font-weight: 600;
+    color: white;
+}
+
+.appHeader .shopLogo {
+    width: 100px;
+}
+
+.appHeader .pageTitle {
+    margin-right: auto;
 }
