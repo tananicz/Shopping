@@ -1,0 +1,28 @@
+.categoriesPanel {
+    width: 15%;
+    background-color: #ddd;
+    margin-top: 15px;
+    padding: 100px 10px 10px 0px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.category {
+    width: 85%;
+    background-color: rgb(0, 139, 139);
+    color: white;
+    height: 50px; 
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 0 10px 10px 0;
+    font-size: 17px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.category:hover {
+    background-color: rgb(0, 89, 89);
+}

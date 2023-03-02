@@ -1,10 +1,11 @@
 import React from "react";
 import Product from "../Product/Product";
 import OptionsBar from "../OptionsBar/OptionsBar";
+import CategoriesPanel from "../CategoriesPanel/CategoriesPanel";
 import Pagination from "../Pagination/Pagination";
 import "./Shop.css"
 
-export default function Shop(props)
+export default function Shop()
 {
     function sortFunction(method, item1, item2)
     {
@@ -23,14 +24,24 @@ export default function Shop(props)
 
     const [currentPage, setPage] = React.useState(1);
     const [itemsPerPage, setItemsPerPage] = React.useState(10);
-    let totalPages = Math.ceil(props.products.length / itemsPerPage);
     const [sortBy, setSortBy] = React.useState("Name ASC");
 
+    const [category, setCategory] = React.useState("all");
+    const apiUrl = category === "all" ? "https://fakestoreapi.com/products" : ("https://fakestoreapi.com/products/category/" + category);
+
+    const [products, setProducts] = React.useState([]);
+    React.useEffect(() => {
+        fetch(apiUrl)
+            .then(res => res.json())
+                .then(data => setProducts(data));
+    }, [category]);
+    
+    let totalPages = Math.ceil(products.length / itemsPerPage);
     let itemsElement = (<div></div>);
 
-    if (props.products.length > 0)
+    if (products.length > 0)
     {
-        const itemsArray = [].concat(...props.products).sort((a, b) => { return sortFunction(sortBy, a, b); });
+        const itemsArray = [].concat(...products).sort((a, b) => { return sortFunction(sortBy, a, b); });
         const filteredProducts = itemsArray.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
         const productsJSXArray = filteredProducts.map(product => { return (
             <Product key={product.id} product={product} />
@@ -49,7 +60,7 @@ export default function Shop(props)
 
     return (
         <div className="shopDiv">
-            <div className="leftPanel" style={{width: "15%", backgroundColor: "#ddd"}}>Categories panel...</div>
+            <CategoriesPanel setCategory={setCategory} setPage={setPage} />
             {itemsElement}
         </div>
     )
