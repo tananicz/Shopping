@@ -1,0 +1,29 @@
+.pager {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pager > span {
+    display: inline-block;
+    padding: 10px;
+    background-color: rgb(211, 211, 211);
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: default;
+}
+
+.pager > span:hover {
+    background-color: rgb(168, 168, 168);
+}
+
+.pager > .current {
+    display: inline-block;
+    padding: 10px;
+    background-color: rgb(68, 68, 68);
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+    cursor: default;
+}

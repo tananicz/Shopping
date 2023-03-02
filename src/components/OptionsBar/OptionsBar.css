@@ -1,0 +1,17 @@
+.optionsBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #ddd;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.optionsBar > div {
+    margin-left: 40px;
+}
+
+.optionsLabel {
+    font-size: 13px;
+}
