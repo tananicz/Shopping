@@ -1,0 +1,14 @@
+.shopDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.mainPanel {
+    padding: 15px;
+    width: 100%;
+}
+
+.itemsList {
+    display: flex;
+    flex-direction: column;
+}
