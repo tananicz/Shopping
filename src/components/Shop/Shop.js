@@ -25,11 +25,10 @@ export default function Shop()
     const [currentPage, setPage] = React.useState(1);
     const [itemsPerPage, setItemsPerPage] = React.useState(10);
     const [sortBy, setSortBy] = React.useState("Name ASC");
-
     const [category, setCategory] = React.useState("all");
     const apiUrl = category === "all" ? "https://fakestoreapi.com/products" : ("https://fakestoreapi.com/products/category/" + category);
-
     const [products, setProducts] = React.useState([]);
+
     React.useEffect(() => {
         fetch(apiUrl)
             .then(res => res.json())
@@ -53,7 +52,7 @@ export default function Shop()
                 <div className="itemsList">
                     {productsJSXArray}
                 </div>
-                {totalPages > 1 && <div className="paginationContainer"><Pagination currentPage={currentPage} totalPages={totalPages} setPage={setPage} /></div>}
+                {totalPages > 1 && <div className="paginationContainer"><Pagination currentPage={currentPage} totalPages={totalPages} setPage={setPage} /></div> }
             </div>
         );
     }
