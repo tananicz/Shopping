@@ -4,6 +4,7 @@ import "./Product.css"
 export default function Product(props)
 {
     const product = props.product;
+    const addToCart = props.addToCart;
 
     return (
         <div className="product">
@@ -16,7 +17,7 @@ export default function Product(props)
             </div>
             <div className="priceDiv">
                 <p className="productPrice">${product.price}</p>
-                <p><button>Add to cart</button></p>
+                <p><button onClick={() => { addToCart(product); }}>Add to cart</button></p>
             </div>
         </div>
     );

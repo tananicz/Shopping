@@ -5,7 +5,7 @@ import CategoriesPanel from "../CategoriesPanel/CategoriesPanel";
 import Pagination from "../Pagination/Pagination";
 import "./Shop.css"
 
-export default function Shop()
+export default function Shop(props)
 {
     function sortFunction(method, item1, item2)
     {
@@ -43,7 +43,7 @@ export default function Shop()
         const itemsArray = [].concat(...products).sort((a, b) => { return sortFunction(sortBy, a, b); });
         const filteredProducts = itemsArray.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
         const productsJSXArray = filteredProducts.map(product => { return (
-            <Product key={product.id} product={product} />
+            <Product key={product.id} product={product} addToCart={props.addToCart} />
         )});
 
         itemsElement = (
