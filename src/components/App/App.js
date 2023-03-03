@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import useSessionToken from "../../hooks/useSessionToken"
 import useCart from "../../hooks/useCart"
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import Shop from "../Shop/Shop";
 import Cart from "../Cart/Cart";
 import Login from "../Login/Login";
@@ -15,8 +16,6 @@ export default function App()
     const [token, setToken] = useSessionToken();
     const userName = token.firstName ?? "";
 
-    console.log("cart:", cart);
-
     return (
         <div className="appContainer">
             <Header userName={userName} setToken={setToken} cart={cart} />
@@ -24,11 +23,12 @@ export default function App()
                 <Routes>
                     <Route exact path="/" element={<Shop addToCart={cartOperations.add} />} />
                     <Route exact path="/shop" element={<Shop addToCart={cartOperations.add} />} />
-                    <Route exact path="/cart" element={<Cart />} />
+                    <Route exact path="/cart" element={<Cart cart={cart} cartOperations={cartOperations} />} />
                     <Route exact path="/checkout" element={token.tokenStr ? <Checkout /> : <Login setToken={setToken} />} />
                     <Route exact path="/login" element={token.tokenStr ? <Navigate to="/" /> : <Login setToken={setToken} />} />
                 </Routes>
             </BrowserRouter>
+            <Footer />
         </div>
     );
 }

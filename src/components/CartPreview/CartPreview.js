@@ -3,7 +3,7 @@ import "./CartPreview.css"
 
 export default function CartPreview(props)
 {
-    const itemCount = props.cart.length;
+    const itemCount = props.cart.reduce((itemsCount, item) => itemsCount + item.quantity, 0);
 
     return (
         <div className="cartPreview">

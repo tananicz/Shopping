@@ -25,6 +25,10 @@
     margin-right: auto;
 }
 
+.appHeader .pageTitle a {
+    text-decoration: none;
+}
+
 .previewContainer {
     display: flex;
     flex-direction: column;

@@ -28,18 +28,18 @@ export default function Pagination(props)
                 jsxElem = (<>...</>);
                 break;
             case "Prev":
-                jsxElem = (<a onClick={() => { setPage(Number(currentPage) - 1) }}>{elem}</a>);
+                jsxElem = (<a onClick={() => { setPage(Number(currentPage) - 1) }}><button>{elem}</button></a>);
                 break;
             case "Next":
-                jsxElem = (<a onClick={() => { setPage(Number(currentPage) + 1) }}>{elem}</a>);
+                jsxElem = (<a onClick={() => { setPage(Number(currentPage) + 1) }}><button>{elem}</button></a>);
                 break;
             default:
-                jsxElem = (<a onClick={() => { setPage(Number(currElem)) }}>{elem}</a>);
+                jsxElem = (<a onClick={() => { setPage(Number(currElem)) }}><button>{elem}</button></a>);
                 break;
         }
 
         aKey++;
-        return (<span key={aKey} className={Number(elem) === currentPage ? "current" : "page"}>{jsxElem}</span>);
+        return (<span key={aKey} className={Number(elem) === currentPage ? "current" : ""}>{jsxElem}</span>);
     });
 
     return (

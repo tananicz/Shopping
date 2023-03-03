@@ -2,13 +2,24 @@ import React from "react";
 
 export default function useCart()
 {
-    const [cart, setCart] = React.useState([]);
+    const storageCart = sessionStorage.getItem("cart");
+    const cartArr = storageCart ? JSON.parse(storageCart) : [];
+    const [cart, setCart] = React.useState(cartArr);
+      
+    function setSessionCart(deleg)
+    {
+        setCart(prevCart => {
+            const newCart = deleg(prevCart);
+            sessionStorage.setItem("cart", JSON.stringify(newCart));
+            return newCart;
+        });
+    }
 
     function addItem(newProduct)
     {
         if (!cart.map(item => item.id).includes(newProduct.id))
         {
-            setCart(prevCart => [].concat(prevCart).concat(newProduct));
+            setSessionCart(prevCart => [].concat(prevCart).concat(newProduct));
         }
     }
 
@@ -16,7 +27,7 @@ export default function useCart()
     {
         if (cart.map(item => item.id).includes(itemToUpdate.id))
         {
-            setCart(prevCart => {
+            setSessionCart(prevCart => {
                 const index = prevCart.map(item => item.id).indexOf(itemToUpdate.id);
                 const updatedCart = [].concat(prevCart);
                 updatedCart[index] = itemToUpdate;
@@ -27,9 +38,10 @@ export default function useCart()
 
     function deleteItem(itemToDelete)
     {
+        console.log("aaa");
         if (cart.map(item => item.id).includes(itemToDelete.id))
         {
-            setCart(prevCart => {
+            setSessionCart(prevCart => {
                 const index = prevCart.map(item => item.id).indexOf(itemToDelete.id);
                 const modifiedCart = [].concat(prevCart);
                 modifiedCart.splice(index, 1);
