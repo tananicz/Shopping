@@ -16,6 +16,7 @@ export default function Product(props)
             </div>
             <div className="priceDiv">
                 <p className="productPrice">${product.price}</p>
+                <p><button>Add to cart</button></p>
             </div>
         </div>
     );
