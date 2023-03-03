@@ -24,3 +24,9 @@
 .appHeader .pageTitle {
     margin-right: auto;
 }
+
+.previewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import Logout from "../Logout/Logout";
+import CartPreview from "../CartPreview/CartPreview";
 import "./Header.css"
 
 export default function Header(props)
@@ -12,7 +13,10 @@ export default function Header(props)
             <div className="pageTitle">
                 <h1>ACME Shop</h1>
             </div>
-            {props.userName && <Logout userName={props.userName} setToken={props.setToken} />}
+            <div className="previewContainer">
+                {props.userName && <Logout userName={props.userName} setToken={props.setToken} />}
+                {props.cart.length > 0 && <CartPreview cart={props.cart} />}
+            </div>
         </header>
     );
 }

@@ -5,7 +5,7 @@ export default function Logout(props)
 {
     return (
         <div className="logoutComponent">
-            <span>Hello <strong>{props.userName}</strong>,<br/>You have some items in basket...</span>
+            <span>Welcome to our shop <strong>{props.userName}</strong></span>
             <button onClick={() => props.setToken("")}>Logout</button>
         </div>
     );

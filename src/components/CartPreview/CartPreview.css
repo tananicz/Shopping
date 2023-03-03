@@ -1,0 +1,20 @@
+.cartPreview {
+    margin-top: 10px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cartIcon {
+    width: 50px;
+}
+
+.iconContainer {
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.iconContainer:hover {
+    transform: scale(1.1);
+}

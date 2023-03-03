@@ -1,6 +1,7 @@
 .logoutComponent {
     color: white;
     display: flex;
+    align-items: center;
 }
 
 .logoutComponent > span {
