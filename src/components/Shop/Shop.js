@@ -33,7 +33,7 @@ export default function Shop()
         fetch(apiUrl)
             .then(res => res.json())
                 .then(data => setProducts(data));
-    }, [category]);
+    }, [category, apiUrl]);
     
     let totalPages = Math.ceil(products.length / itemsPerPage);
     let itemsElement = (<div></div>);
