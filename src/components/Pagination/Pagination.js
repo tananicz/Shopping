@@ -28,13 +28,13 @@ export default function Pagination(props)
                 jsxElem = (<>...</>);
                 break;
             case "Prev":
-                jsxElem = (<a onClick={() => { setPage(Number(currentPage) - 1) }}><button>{elem}</button></a>);
+                jsxElem = (<button onClick={() => { setPage(Number(currentPage) - 1) }}>{elem}</button>);
                 break;
             case "Next":
-                jsxElem = (<a onClick={() => { setPage(Number(currentPage) + 1) }}><button>{elem}</button></a>);
+                jsxElem = (<button onClick={() => { setPage(Number(currentPage) + 1) }}>{elem}</button>);
                 break;
             default:
-                jsxElem = (<a onClick={() => { setPage(Number(currElem)) }}><button>{elem}</button></a>);
+                jsxElem = (<button onClick={() => { setPage(Number(currElem)) }}>{elem}</button>);
                 break;
         }
 
