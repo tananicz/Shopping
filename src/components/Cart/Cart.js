@@ -23,7 +23,7 @@ export default function Cart(props)
             <div className="buttons">
                 <div>
                     <a href="/"><button className="continue">Continue shopping</button></a>
-                    {props.cart.length > 0 && <a href="#"><button className="checkout">Checkout</button></a>}
+                    {props.cart.length > 0 && <a href="/checkout"><button className="checkout">Checkout</button></a>}
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ export default function Login(props)
 {
     const [login, setLogin] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const title = props.title || "Please provide login & password";
 
     function showError()
     {
@@ -34,7 +35,7 @@ export default function Login(props)
             const data = await response.json();
 
             if (data?.clientId && data?.firstName && data?.surname && data?.tokenStr)
-                props.setToken(data);
+                props.setUserData(data);
         }
         catch (e)
         {
@@ -53,7 +54,7 @@ export default function Login(props)
     return (
         <div>
             <form onSubmit={handleSubmit} className="loginForm">
-                <h2>Please provide login & password</h2>
+                <h2>{title}</h2>
                 <label id="errorLabel"></label>
                 <label htmlFor="login">Login</label>
                 <input type="text" value={login} onChange={handleChange} id="login" />

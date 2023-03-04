@@ -1,0 +1,82 @@
+.checkoutContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.checkoutContainer .title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.buttons {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.buttons div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.buttons button {
+    padding: 15px;
+    color: white;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+button.return {
+    background-color: rgb(0, 139, 139);
+}
+
+button.return:hover {
+    background-color: rgb(0, 89, 89);
+}
+
+button.confirm {
+    background-color: rgb(255, 119, 56);
+}
+
+button.confirm:hover {
+    background-color: rgb(180, 57, 0);
+}
+
+.tableContainer {
+    width: 60%;
+}
+
+.itemsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.itemsTable th, .itemsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.itemsTable tr:hover {
+    background-color: #ddd;
+}
+
+.itemsTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #ddd;
+    color: black;
+}
+
+.itemsTable tfoot td {
+    text-align: center;
+    color: #b00;
+    font-size: 20px;
+}
