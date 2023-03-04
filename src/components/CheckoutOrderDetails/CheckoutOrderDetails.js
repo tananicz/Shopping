@@ -12,7 +12,7 @@ export default function CheckoutOrderDetails(props)
         return (
             <div className="shipmentOption" key={shipment.id}>
                 <input onChange={(e) => updateShipment(e)} type="radio" id={`shipment${shipment.id}`} name="shipment" value={shipment.id} checked={props.order.shipmentId === shipment.id ? true : false} />
-                <label htmlFor="tradPost">{`${shipment.name} (${shipment.price})`} </label>
+                <label htmlFor="tradPost">{`${shipment.name} $${shipment.price}`} </label>
             </div>
         );
     });
@@ -43,8 +43,18 @@ export default function CheckoutOrderDetails(props)
         });
     }
 
+    function confirmOrder(e)
+    {
+        e.preventDefault();
+        setOrder(prevOrder => {
+            const confirmedOrder = { ...prevOrder };
+            confirmedOrder.confirmed = true;
+            return confirmedOrder;
+        });
+    }
+
     return (
-        <form id="orderForm">
+        <form onSubmit={(e) => confirmOrder(e)} id="orderForm">
             <div className="addressArea">
                 <div className="addressAreaTitle">Please provide your data</div>
                 <div className="inputArea">

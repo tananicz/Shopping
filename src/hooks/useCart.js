@@ -3,14 +3,16 @@ import React from "react";
 export default function useCart()
 {
     const storageCart = sessionStorage.getItem("cart");
-    const cartObj = storageCart ? JSON.parse(storageCart) : { cartArr: [], orderConfirmed: false };
+    const cartObj = { cartArr: (storageCart ? JSON.parse(storageCart) : []), orderConfirmed: false };
+    //const cartObj = storageCart ? JSON.parse(storageCart) : { cartArr: [], orderConfirmed: false };
     const [cart, setCart] = React.useState(cartObj);
       
     function setSessionCart(deleg)
     {
         setCart(prevCart => {
             const newCart = deleg(prevCart);
-            sessionStorage.setItem("cart", JSON.stringify(newCart));
+            sessionStorage.setItem("cart", JSON.stringify(newCart.cartArr));
+            //sessionStorage.setItem("cart", JSON.stringify(newCart));
             return newCart;
         });
     }
@@ -58,6 +60,16 @@ export default function useCart()
         }
     }
 
+    function deleteAfterPurchase()
+    {
+        setSessionCart(prevCart => {
+            return {
+                cartArr: [],
+                orderConfirmed: true
+            };
+        });
+    }
+
     function setOrderConfirmed(value)
     {
         setSessionCart(prevCart => {
@@ -73,6 +85,7 @@ export default function useCart()
         "add": addItem,
         "update": updateItem,
         "delete": deleteItem,
+        "deleteAfterPurchase": deleteAfterPurchase,
         "setOrderConfirmed": setOrderConfirmed
     };
 

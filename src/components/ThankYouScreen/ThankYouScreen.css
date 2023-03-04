@@ -1,0 +1,29 @@
+.thankYouDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thankYouDiv div {
+    margin: 50px 0 50px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.thankYouDiv a {
+    cursor: default;
+}
+
+.thankYouDiv button {
+    padding: 20px;
+    width: 150px;
+    border: none;
+    background-color: #ddd;
+    font-size: 15px;
+    margin-bottom: 40px;
+}
+
+.thankYouDiv button:hover {
+    background-color: #aaa;
+    color: white;
+}

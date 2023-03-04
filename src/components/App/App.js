@@ -8,6 +8,7 @@ import Shop from "../Shop/Shop";
 import Cart from "../Cart/Cart";
 import Login from "../Login/Login";
 import Checkout from "../Checkout/Checkout";
+import ThankYouScreen from "../ThankYouScreen/ThankYouScreen";
 import "./App.css"
 
 export default function App()
@@ -16,13 +17,22 @@ export default function App()
     const [userData, setUserData] = useSessionUser();
     const userName = userData.firstName ?? "";
 
+    console.log(cart);
+
     let checkoutTarget;
-    if (userData.tokenStr && cart.cartArr.length > 0)
-        checkoutTarget = <Checkout cart={cart} operations={cartOperations} userData={userData} />;
-    else if (!userData.tokenStr && cart.cartArr.length > 0)
-        checkoutTarget = <Login title="Please provide your credentials to continue" setUserData={setUserData} />;
+    if (cart.orderConfirmed)
+    {
+        checkoutTarget = <ThankYouScreen userName={userName} />;
+    }
     else
-        checkoutTarget = <Navigate to="/cart" />;
+    {
+        if (userData.tokenStr && cart.cartArr.length > 0)
+            checkoutTarget = <Checkout cart={cart} cartOperations={cartOperations} userData={userData} />;
+        else if (!userData.tokenStr && cart.cartArr.length > 0)
+            checkoutTarget = <Login title="Please provide your credentials to continue" setUserData={setUserData} />;
+        else
+            checkoutTarget = <Navigate to="/cart" />;
+    }
 
     return (
         <div className="appContainer">

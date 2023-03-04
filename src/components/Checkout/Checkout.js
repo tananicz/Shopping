@@ -32,10 +32,19 @@ export default function Checkout(props)
                 quantity: item.quantity,
                 price: item.price
             };
-        })
+        }),
+        confirmed: false
     });
 
-    console.log(order);
+    if (order.confirmed)
+    {
+        //as we're in charge of order state, here we can send some xhr requests to the database to save the order
+    }
+
+    React.useEffect(() => { 
+        if (order.confirmed) 
+            props.cartOperations.deleteAfterPurchase();
+    }, [order.confirmed]);
 
     return (
         <div className="checkoutContainer">
@@ -49,7 +58,7 @@ export default function Checkout(props)
             <div className="buttons">
                 <div>
                     <a href="/cart"><button className="return">Return to cart</button></a>
-                    <a href="#"><button className="confirm">Confirm order</button></a>
+                    <button className="confirm" form="orderForm">Confirm order</button>
                 </div>
             </div>
         </div>
