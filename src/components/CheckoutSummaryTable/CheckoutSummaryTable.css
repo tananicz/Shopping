@@ -1,0 +1,27 @@
+.itemsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.itemsTable th, .itemsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.itemsTable tr:hover {
+    background-color: #ddd;
+}
+
+.itemsTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #ddd;
+    color: black;
+}
+
+.itemsTable tfoot td {
+    text-align: center;
+    color: #b00;
+    font-size: 20px;
+}

@@ -17,7 +17,14 @@ app.post('/login', (req, res) => {
             clientId: 1,
             firstName: "Piotr",
             surname: "Kowalski",
-            tokenStr: 'urgu9843t9uons'
+            tokenStr: 'urgu9843t9uons',
+            address: {
+                street: "ul. Akacjowa 5/1",
+                postalCode: "12-432",
+                city: "Katowice",
+            },
+            phone: "502-462-367",
+            email: "pkowalski@poczta.pl"
         });
     }
     else

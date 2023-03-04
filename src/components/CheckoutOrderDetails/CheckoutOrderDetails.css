@@ -1,0 +1,50 @@
+.inputArea {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0 20px 0;
+}
+
+.addressArea {
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #eee;
+}
+
+.addressArea input {
+    font-size: 15px;
+    padding: 10px;
+}
+
+.addressAreaTitle {
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.shipmentArea {
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #eee;
+    margin-top: 40px;
+}
+
+.shipmentAreaTitle {
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.shipmentOption {
+    margin-bottom: 15px;
+}
+
+.shipmentOption label {
+    margin-left: 10px;
+}
+
+#totalWithShipment {
+    text-align: right;
+    color: #b00;
+    font-size: 20px;
+}

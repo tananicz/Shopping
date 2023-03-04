@@ -1,48 +1,50 @@
 import React from "react";
+import CheckoutSummaryTable from "../CheckoutSummaryTable/CheckoutSummaryTable";
+import CheckoutOrderDetails from "../CheckoutOrderDetails/CheckoutOrderDetails";
 import "./Checkout.css"
 
 export default function Checkout(props)
 {
-    const itemsArr = props.cart.cartArr;
-    const totalPrice = itemsArr.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2);
+    const shipments = [
+        {
+            id: 1,
+            name: "Traditional Post",
+            price: 2.99
+        },
+        {
+            id: 2,
+            name: "Courier Company",
+            price: 3.49
+        },
+        {
+            id: 3,
+            name: "Parcel locker",
+            price: 3.99
+        }
+    ];
 
-    let i = 0;
-    const tbodyJSX = itemsArr.map(item => {
-        i++;
-        return (
-            <tr>
-                <td>{i}</td>
-                <td>{item.title}</td>
-                <td>{item.quantity}</td>
-                <td>{item.price}</td>
-            </tr>
-        );
+    const [order, setOrder] = React.useState({
+        userData: props.userData,
+        shipmentId: 1,
+        itemsArr: props.cart.cartArr.map(item => {
+            return {
+                id: item.id,
+                quantity: item.quantity,
+                price: item.price
+            };
+        })
     });
+
+    console.log(order);
 
     return (
         <div className="checkoutContainer">
             <div className="title">Summary:</div>
             <div className="tableContainer">
-                <table className="itemsTable">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tbodyJSX}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="4">
-                                Total: <strong>{totalPrice}</strong>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <CheckoutSummaryTable itemsArr={props.cart.cartArr} />
+            </div>
+            <div className="orderDetails">
+                <CheckoutOrderDetails shipments={shipments} order={order} setOrder={setOrder} />
             </div>
             <div className="buttons">
                 <div>
