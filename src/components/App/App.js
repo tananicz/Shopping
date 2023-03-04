@@ -17,7 +17,7 @@ export default function App()
     const [userData, setUserData] = useSessionUser();
     const userName = userData.firstName ?? "";
 
-    console.log(cart);
+    //console.log(cart);
 
     let checkoutTarget;
     if (cart.orderConfirmed)
