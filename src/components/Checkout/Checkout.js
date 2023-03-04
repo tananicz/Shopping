@@ -38,7 +38,8 @@ export default function Checkout(props)
 
     if (order.confirmed)
     {
-        //as we're in charge of order state, here we can send some xhr requests to the database to save the order
+        //as we're in charge of order state, here we can send some xhr requests 
+        //to the database to save the order and decrease quantity of available products etc.
     }
 
     React.useEffect(() => { 
