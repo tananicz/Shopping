@@ -22,44 +22,53 @@ export default function Shop(props)
         }
     }
 
-    const [currentPage, setPage] = React.useState(1);
-    const [itemsPerPage, setItemsPerPage] = React.useState(10);
-    const [sortBy, setSortBy] = React.useState("Name ASC");
-    const [category, setCategory] = React.useState("all");
-    const apiUrl = category === "all" ? "https://fakestoreapi.com/products" : ("https://fakestoreapi.com/products/category/" + category);
-    const [products, setProducts] = React.useState([]);
+    const [displayOpts, setDisplayOpts] = React.useState({
+        currentPage: 1,
+        itemsPerPage: 10,
+        sortBy: "Name ASC",
+        category: "all",
+        products: []
+    });
+
+    const totalPages = Math.ceil(displayOpts.products.length / displayOpts.itemsPerPage);
+    const apiUrl = displayOpts.category === "all" ? "https://fakestoreapi.com/products" : ("https://fakestoreapi.com/products/category/" + displayOpts.category);
 
     React.useEffect(() => {
         fetch(apiUrl)
             .then(res => res.json())
-                .then(data => setProducts(data));
-    }, [category, apiUrl]);
-    
-    let totalPages = Math.ceil(products.length / itemsPerPage);
+                .then(data => setDisplayOpts(prevOpts => {
+                        return {
+                            ...prevOpts,
+                            products: data
+                        };
+                    }));
+    }, [displayOpts.category, apiUrl]);
+
     let itemsElement = (<div></div>);
 
-    if (products.length > 0)
+    if (displayOpts.products.length > 0)
     {
-        const itemsArray = [].concat(...products).sort((a, b) => { return sortFunction(sortBy, a, b); });
-        const filteredProducts = itemsArray.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+        const itemsArray = [].concat(...displayOpts.products).sort((a, b) => { return sortFunction(displayOpts.sortBy, a, b); });
+        const filteredProducts = itemsArray.slice((displayOpts.currentPage - 1) * displayOpts.itemsPerPage, displayOpts.currentPage * displayOpts.itemsPerPage);
         const productsJSXArray = filteredProducts.map(product => { return (
             <Product key={product.id} product={product} addToCart={props.addToCart} />
         )});
 
         itemsElement = (
             <div className="mainPanel">
-                <OptionsBar currentItemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} setPage={setPage} currentSortBy={sortBy} setSortBy={setSortBy} />
+                <OptionsBar currentItemsPerPage={displayOpts.itemsPerPage} currentSortBy={displayOpts.sortBy} setOpts={setDisplayOpts} />
                 <div className="itemsList">
                     {productsJSXArray}
                 </div>
-                {totalPages > 1 && <div className="paginationContainer"><Pagination currentPage={currentPage} totalPages={totalPages} setPage={setPage} /></div> }
+                {totalPages > 1 && 
+                    <div className="paginationContainer"><Pagination currentPage={displayOpts.currentPage} totalPages={totalPages} setOpts={setDisplayOpts} /></div> }
             </div>
         );
     }
 
     return (
         <div className="shopDiv">
-            <CategoriesPanel setCategory={setCategory} setPage={setPage} />
+            <CategoriesPanel setOpts={setDisplayOpts} />
             {itemsElement}
         </div>
     )

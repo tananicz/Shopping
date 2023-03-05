@@ -5,7 +5,7 @@ export default function Pagination(props)
 {
     const totalPages = props.totalPages;
     const currentPage = props.currentPage;
-    const setPage = props.setPage;
+    const setOpts = props.setOpts;
     let pagesArr = [];
 
     for (let i = 1; i <= totalPages; i++)
@@ -28,13 +28,28 @@ export default function Pagination(props)
                 jsxElem = (<>...</>);
                 break;
             case "Prev":
-                jsxElem = (<button onClick={() => { setPage(Number(currentPage) - 1) }}>{elem}</button>);
+                jsxElem = (<button onClick={() => { setOpts(prevOpts => {
+                        return {
+                            ...prevOpts,
+                            currentPage: Number(currentPage) - 1
+                        };
+                    }); }}>{elem}</button>);
                 break;
             case "Next":
-                jsxElem = (<button onClick={() => { setPage(Number(currentPage) + 1) }}>{elem}</button>);
+                jsxElem = (<button onClick={() => { setOpts(prevOpts => {
+                        return {
+                            ...prevOpts,
+                            currentPage: Number(currentPage) + 1
+                        };
+                    }); }}>{elem}</button>);
                 break;
             default:
-                jsxElem = (<button onClick={() => { setPage(Number(currElem)) }}>{elem}</button>);
+                jsxElem = (<button onClick={() => { setOpts(prevOpts => {
+                        return {
+                            ...prevOpts,
+                            currentPage: Number(currElem)
+                        };
+                    }); }}>{elem}</button>);
                 break;
         }
 

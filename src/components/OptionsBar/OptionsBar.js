@@ -14,7 +14,13 @@ export default function OptionsBar(props)
         <div className="optionsBar">
             <div>
                 <span className="optionsLabel">Sort by: </span>
-                <select value={props.currentSortBy} onChange={(e) => { props.setSortBy(e.target.value); props.setPage(1); }}>
+                <select value={props.currentSortBy} onChange={(e) => { props.setOpts(prevOpts => {
+                        return {
+                            ...prevOpts,
+                            currentPage: 1,
+                            sortBy: e.target.value
+                        };
+                    }); }}>
                     <option>Name ASC</option>
                     <option>Name DESC</option>
                     <option>Price ASC</option>
@@ -23,7 +29,13 @@ export default function OptionsBar(props)
             </div>
             <div>
                 <span className="optionsLabel">Items per page: </span>
-                <select value={props.currentItemsPerPage} onChange={(e) => { props.setItemsPerPage(e.target.value); props.setPage(1); }}>
+                <select value={props.currentItemsPerPage} onChange={(e) => { props.setOpts(prevOpts => {
+                        return {
+                            ...prevOpts,
+                            currentPage: 1,
+                            itemsPerPage: Number(e.target.value)
+                        };
+                    }); }}>
                     {itemsPerPageOpts}
                 </select>
             </div>
