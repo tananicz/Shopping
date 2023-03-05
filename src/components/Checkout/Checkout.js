@@ -24,7 +24,7 @@ export default function Checkout(props)
     ];
 
     const [order, setOrder] = React.useState({
-        userData: props.userData,
+        userData: { ...props.userData },
         shipmentId: 1,
         itemsArr: props.cart.cartArr.map(item => {
             return {
@@ -45,7 +45,7 @@ export default function Checkout(props)
     React.useEffect(() => { 
         if (order.confirmed) 
             props.cartOperations.deleteAfterPurchase();
-    }, [order.confirmed]);
+    }, [order.confirmed, props.cartOperations]);
 
     return (
         <div className="checkoutContainer">

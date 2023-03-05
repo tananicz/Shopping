@@ -48,3 +48,9 @@
     color: #b00;
     font-size: 20px;
 }
+
+#errMsg {
+    display: none;
+    font-weight: bold;
+    color: #b00;
+}

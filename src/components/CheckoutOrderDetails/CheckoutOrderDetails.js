@@ -46,17 +46,64 @@ export default function CheckoutOrderDetails(props)
     function confirmOrder(e)
     {
         e.preventDefault();
-        setOrder(prevOrder => {
-            const confirmedOrder = { ...prevOrder };
-            confirmedOrder.confirmed = true;
-            return confirmedOrder;
-        });
+
+        const validateMsg = validateInput();
+        if (validateMsg === "")
+        {
+            setOrder(prevOrder => {
+                const confirmedOrder = { ...prevOrder };
+                confirmedOrder.confirmed = true;
+                return confirmedOrder;
+            });
+        }
+        else
+        {
+            const errMsgDiv = document.getElementById("errMsg");
+            errMsgDiv.innerText = validateMsg;
+            errMsgDiv.style.display = "block";
+        }
+    }
+
+    function validateInput()
+    {
+        let invalidFields = [];
+
+        if (!(userData.firstName.length > 0)) 
+            invalidFields.push("'First name'");
+
+        if (!(userData.surname.length > 0)) 
+            invalidFields.push("'Surname'");
+
+        if (!(userData.address.street.length > 0)) 
+            invalidFields.push("'Street'");
+
+        if (!(userData.address.postalCode.match(/^[0-9]{2}-[0-9]{3}$/))) 
+            invalidFields.push("'Postal code'");
+
+        if (!(userData.address.city.length > 0)) 
+            invalidFields.push("'City'");
+
+        if (!(userData.phone.length > 0)) 
+            invalidFields.push("'Phone'");
+
+        if (!userData.email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) 
+            invalidFields.push("'E-mail'");
+
+        let errMessage = "";
+        if (invalidFields.length > 0)
+        {
+            const fieldsStr = invalidFields.reduce((errStr, field) => errStr = errStr + field + ", ", "");
+            errMessage = `${fieldsStr.substring(0, fieldsStr.length - 2)} field${invalidFields.length > 1 ? "s" : ""} ${invalidFields.length > 1 ? "are" : "is"} invalid`;
+        }
+
+        return errMessage;
     }
 
     return (
         <form onSubmit={(e) => confirmOrder(e)} id="orderForm">
             <div className="addressArea">
                 <div className="addressAreaTitle">Please provide your data</div>
+                <div id="errMsg"></div>
                 <div className="inputArea">
                     <label htmlFor="firstName">First name: </label>
                     <input onChange={(e) => updateUserData(e)} value={userData.firstName} id="firstName" />
