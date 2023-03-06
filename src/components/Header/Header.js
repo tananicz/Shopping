@@ -14,7 +14,7 @@ export default function Header(props)
                 <a href="/"><h1>ACME Shop</h1></a>
             </div>
             <div className="previewContainer">
-                <LoginWidget userName={props.userName} setUserData={props.setUserData} />
+                <LoginWidget userData={props.userData} setUserData={props.setUserData} />
                 {props.cart.length > 0 && <CartPreview cart={props.cart} />}
             </div>
         </header>

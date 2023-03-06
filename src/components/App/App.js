@@ -40,18 +40,17 @@ export default function App()
         if (userData.tokenStr && cart.cartArr.length > 0)
             checkoutTarget = <Checkout cart={cart} cartOperations={cartOperations} userData={userData} />;
         else if (!userData.tokenStr && cart.cartArr.length > 0)
-            checkoutTarget = <Login title="Please provide your credentials to continue" setUserData={setUserData} />;
+            checkoutTarget = <Login title="Please provide your credentials to continue to checkout" setUserData={setUserData} />;
         else
             checkoutTarget = <Navigate to="/cart" />;
     }
 
     return (
         <div className="appContainer">
-            <Header userName={userName} setUserData={setUserData} cart={cart.cartArr} />
+            <Header userData={userData} setUserData={setUserData} cart={cart.cartArr} />
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/" element={<Shop addToCart={cartOperations.add} />} />
-                    <Route exact path="/shop" element={<Shop addToCart={cartOperations.add} />} />
                     <Route exact path="/cart" element={<Cart cart={cart.cartArr} cartOperations={cartOperations} />} />
                     <Route exact path="/checkout" element={checkoutTarget} />
                     <Route exact path="/login" element={loginTarget} />
