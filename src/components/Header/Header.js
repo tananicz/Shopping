@@ -1,5 +1,5 @@
 import React from "react";
-import Logout from "../Logout/Logout";
+import LoginWidget from "../Logout/LoginWidget";
 import CartPreview from "../CartPreview/CartPreview";
 import "./Header.css"
 
@@ -14,7 +14,7 @@ export default function Header(props)
                 <a href="/"><h1>ACME Shop</h1></a>
             </div>
             <div className="previewContainer">
-                {props.userName && <Logout userName={props.userName} setUserData={props.setUserData} />}
+                <LoginWidget userName={props.userName} setUserData={props.setUserData} />
                 {props.cart.length > 0 && <CartPreview cart={props.cart} />}
             </div>
         </header>

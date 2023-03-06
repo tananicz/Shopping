@@ -17,13 +17,24 @@ export default function App()
     const [userData, setUserData] = useSessionUser();
     const userName = userData.firstName ?? "";
 
-    //console.log(cart);
+    let loginTarget;
+    if (userData.tokenStr)
+    {
+        const qs = window.location.search;
+        let returnUrl;
+        if (qs.includes("returnUrl="))
+            returnUrl = qs.split("returnUrl=")[1].split("&")[0];
+        else
+            returnUrl = "/";
+
+        loginTarget = <Navigate to={returnUrl} />;
+    }
+    else
+        loginTarget = <Login setUserData={setUserData} />;
 
     let checkoutTarget;
     if (cart.orderConfirmed)
-    {
         checkoutTarget = <ThankYouScreen userName={userName} />;
-    }
     else
     {
         if (userData.tokenStr && cart.cartArr.length > 0)
@@ -43,7 +54,7 @@ export default function App()
                     <Route exact path="/shop" element={<Shop addToCart={cartOperations.add} />} />
                     <Route exact path="/cart" element={<Cart cart={cart.cartArr} cartOperations={cartOperations} />} />
                     <Route exact path="/checkout" element={checkoutTarget} />
-                    <Route exact path="/login" element={userData.tokenStr ? <Navigate to="/" /> : <Login setUserData={setUserData} />} />
+                    <Route exact path="/login" element={loginTarget} />
                 </Routes>
             </BrowserRouter>
             <Footer />
