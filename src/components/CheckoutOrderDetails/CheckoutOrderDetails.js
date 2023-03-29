@@ -23,7 +23,7 @@ export default function CheckoutOrderDetails(props)
         const propValue = e.target.value;
 
         setOrder(prevOrder => {
-            const updatedOrder = { ...prevOrder };
+            const updatedOrder = JSON.parse(JSON.stringify(prevOrder));
 
             if (propName.match("street|postalCode|city"))
                 updatedOrder.userData.address[propName] = propValue;

@@ -4,7 +4,6 @@ export default function useCart()
 {
     const storageCart = sessionStorage.getItem("cart");
     const cartObj = { cartArr: (storageCart ? JSON.parse(storageCart) : []), orderConfirmed: false };
-    //const cartObj = storageCart ? JSON.parse(storageCart) : { cartArr: [], orderConfirmed: false };
     const [cart, setCart] = React.useState(cartObj);
       
     function setSessionCart(deleg)
@@ -12,7 +11,6 @@ export default function useCart()
         setCart(prevCart => {
             const newCart = deleg(prevCart);
             sessionStorage.setItem("cart", JSON.stringify(newCart.cartArr));
-            //sessionStorage.setItem("cart", JSON.stringify(newCart));
             return newCart;
         });
     }
@@ -24,7 +22,7 @@ export default function useCart()
             setSessionCart(prevCart => {
                 return {
                     ...prevCart,
-                    cartArr: [].concat(prevCart.cartArr).concat(newProduct)
+                    cartArr: JSON.parse(JSON.stringify(prevCart.cartArr)).concat(newProduct)
                 };
             });
         }
@@ -37,7 +35,8 @@ export default function useCart()
             setSessionCart(prevCart => {
                 const index = prevCart.cartArr.map(item => item.id).indexOf(itemToUpdate.id);
                 const updatedCart = {
-                    ...prevCart
+                    ...prevCart,
+                    cartArr: JSON.parse(JSON.stringify(prevCart.cartArr))
                 };
                 updatedCart.cartArr[index] = itemToUpdate;
                 return updatedCart;
@@ -51,11 +50,9 @@ export default function useCart()
         {
             setSessionCart(prevCart => {
                 const index = prevCart.cartArr.map(item => item.id).indexOf(itemToDelete.id);
-                const modifiedCart = {
-                    ...prevCart
-                };
-                modifiedCart.cartArr.splice(index, 1);
-                return modifiedCart;
+                const cartToModify = JSON.parse(JSON.stringify(prevCart));
+                cartToModify.cartArr.splice(index, 1);
+                return cartToModify;
             });
         }
     }

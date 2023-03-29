@@ -48,7 +48,7 @@ export default function Shop(props)
 
     if (displayOpts.products.length > 0)
     {
-        const itemsArray = [].concat(...displayOpts.products).sort((a, b) => { return sortFunction(displayOpts.sortBy, a, b); });
+        const itemsArray = JSON.parse(JSON.stringify(displayOpts.products)).sort((a, b) => { return sortFunction(displayOpts.sortBy, a, b); });
         const filteredProducts = itemsArray.slice((displayOpts.currentPage - 1) * displayOpts.itemsPerPage, displayOpts.currentPage * displayOpts.itemsPerPage);
         const productsJSXArray = filteredProducts.map(product => { return (
             <Product key={product.id} product={product} addToCart={props.addToCart} />
