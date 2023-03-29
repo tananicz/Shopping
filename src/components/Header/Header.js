@@ -1,5 +1,5 @@
 import React from "react";
-import LoginWidget from "../Logout/LoginWidget";
+import LoginWidget from "../LoginWidget/LoginWidget";
 import CartPreview from "../CartPreview/CartPreview";
 import "./Header.css"
 
