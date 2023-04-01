@@ -7,7 +7,7 @@ export default function ItemDetailsModal(props)
     const [itemData, setItemData] = React.useState({});
     const itemDetailsAPIUrl = "https://fakestoreapi.com/products/" + props.productId;
 
-    let detailsJSX = <div className="loading"><img src="loading.gif" /></div>;
+    let detailsJSX = <div className="loading"><img src="loading.gif" alt="loading animation" /></div>;
     if (itemData.id)
     {
         detailsJSX = <>
@@ -39,16 +39,23 @@ export default function ItemDetailsModal(props)
 
     React.useEffect(() => {
         document.querySelector(".itemDetailsDialog").showModal();
+        let ignore = false;
 
         async function fetchData()
         {
             const resp = await fetch(itemDetailsAPIUrl);
             const data = await resp.json();
-            setItemData(data);
+
+            if (!ignore)
+                setItemData(data);
         }
 
         fetchData();
-    }, []);
+
+        return () => { 
+            ignore = true 
+        };
+    }, [itemDetailsAPIUrl]);
 
     console.log(itemData);
 
