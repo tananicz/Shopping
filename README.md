@@ -1,4 +1,4 @@
-A simple shop made in React (using Create React App) that lets the user to add an item to a cart, see the contents of the cart and proceed to checkout (no payment implemented)
+A simple shop frontend made in React (using Create React App) that lets the user to add an item to a cart, see the contents of the cart and proceed to checkout (no payment implemented)
 
 Additional requirements:
 - React Router (web version)
