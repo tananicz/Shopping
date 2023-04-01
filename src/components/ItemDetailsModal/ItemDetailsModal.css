@@ -1,0 +1,26 @@
+.itemDetailsDialog {
+    width: 800px;
+    padding: 30px;
+}
+
+.loading {
+    text-align: center;
+}
+
+.dialogButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.itemTitle {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.itemImage {
+    width: auto;
+    height: auto;
+    max-width: 400px;
+    max-height: 400px;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import Product from "../Product/Product";
+import ItemDetailsModal from "../ItemDetailsModal/ItemDetailsModal";
 import OptionsBar from "../OptionsBar/OptionsBar";
 import CategoriesPanel from "../CategoriesPanel/CategoriesPanel";
 import Pagination from "../Pagination/Pagination";
@@ -27,7 +28,8 @@ export default function Shop(props)
         itemsPerPage: 10,
         sortBy: "Name ASC",
         category: "all",
-        products: []
+        products: [],
+        selectedProduct: -1
     });
 
     const totalPages = Math.ceil(displayOpts.products.length / displayOpts.itemsPerPage);
@@ -51,7 +53,7 @@ export default function Shop(props)
         const itemsArray = JSON.parse(JSON.stringify(displayOpts.products)).sort((a, b) => { return sortFunction(displayOpts.sortBy, a, b); });
         const filteredProducts = itemsArray.slice((displayOpts.currentPage - 1) * displayOpts.itemsPerPage, displayOpts.currentPage * displayOpts.itemsPerPage);
         const productsJSXArray = filteredProducts.map(product => { return (
-            <Product key={product.id} product={product} addToCart={props.addToCart} />
+            <Product key={product.id} product={product} addToCart={props.addToCart} setOpts={setDisplayOpts} />
         )});
 
         itemsElement = (
@@ -70,6 +72,7 @@ export default function Shop(props)
         <div className="shopDiv">
             <CategoriesPanel setOpts={setDisplayOpts} />
             {itemsElement}
+            {displayOpts.selectedProduct > 0 && <ItemDetailsModal productId={displayOpts.selectedProduct} setOpts={setDisplayOpts} />}
         </div>
     )
 }

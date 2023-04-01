@@ -16,6 +16,11 @@
     font-size: 20px;
 }
 
+.productName:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .productCategory {
     color: #555;
     font-size: 14px;
