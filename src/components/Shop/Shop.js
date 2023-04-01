@@ -70,7 +70,7 @@ export default function Shop(props)
 
     return (
         <div className="shopDiv">
-            <CategoriesPanel setOpts={setDisplayOpts} />
+            <CategoriesPanel currentCat={displayOpts.category} setOpts={setDisplayOpts} />
             {itemsElement}
             {displayOpts.selectedProduct > 0 && <ItemDetailsModal productId={displayOpts.selectedProduct} setOpts={setDisplayOpts} />}
         </div>
