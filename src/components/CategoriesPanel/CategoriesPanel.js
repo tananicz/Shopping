@@ -19,7 +19,7 @@ export default function CategoriesPanel(props)
     const categoriesElements = categories.map(category => {
         const aCategory = category === "All products" ? "all" : category;
         return (
-            <div key={aCategory} className="category" onClick={() => { props.setOpts(prevOpts => {
+            <div key={aCategory} className={aCategory === props.currentCat ? "category current" : "category"} onClick={() => { props.setOpts(prevOpts => {
                     return {
                         ...prevOpts,
                         currentPage: 1,

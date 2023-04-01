@@ -68,7 +68,7 @@ export default function Shop(props)
 
     return (
         <div className="shopDiv">
-            <CategoriesPanel setOpts={setDisplayOpts} />
+            <CategoriesPanel currentCat={displayOpts.category} setOpts={setDisplayOpts} />
             {itemsElement}
         </div>
     )
