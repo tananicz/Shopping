@@ -1,10 +1,27 @@
 .itemDetailsDialog {
-    width: 800px;
+    width: 900px;
     padding: 30px;
+}
+
+.itemDetailsDialog::backdrop {
+    background: rgba(40, 40, 40, 0.75);
 }
 
 .loading {
     text-align: center;
+}
+
+.itemDescription p {
+    margin: 5px 0 5px 0;
+}
+
+.descriptionText {
+    text-align: justify;
+}
+
+.descriptionLabel {
+    font-weight: bold;
+    margin-bottom: 2px;
 }
 
 .dialogButtons {
@@ -18,9 +35,34 @@
     font-size: 20px;
 }
 
-.itemImage {
+.itemImage > img {
     width: auto;
     height: auto;
     max-width: 400px;
     max-height: 400px;
+}
+
+.ratingVal {
+    font-weight: bold;
+}
+
+.itemDetailsDialog .itemPrice {
+    font-weight: bold;
+    color: #b00;
+    font-size: 20px;
+    text-align: left;
+}
+
+button.close {
+    padding: 15px;
+    border: none;
+    width: 80px;
+    font-weight: bold;
+    background-color: rgb(0, 139, 139);
+    color: white;
+}
+
+button.close:hover {
+    background-color: rgb(50, 50, 50);
+    cursor: pointer;
 }

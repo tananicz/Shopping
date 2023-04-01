@@ -1,13 +1,9 @@
 import React from "react";
 import "./CategoriesPanel.css"
+import { capitalize } from "../../helpers.js"
 
 export default function CategoriesPanel(props)
 {
-    function capitalize(str)
-    {
-        return str[0].toUpperCase() + str.substring(1);
-    }
-
     const [categories, setCategories] = React.useState([]);
 
     React.useEffect(() => {
