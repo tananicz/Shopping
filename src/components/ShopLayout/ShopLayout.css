@@ -1,0 +1,4 @@
+.shopDiv {
+    display: flex;
+    flex-direction: row;
+}

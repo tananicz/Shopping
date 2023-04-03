@@ -1,10 +1,12 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate, RouterProvider } from 'react-router-dom';
 import useSessionUser from "../../hooks/useSessionUser"
 import useCart from "../../hooks/useCart"
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import ShopLayout from "../ShopLayout/ShopLayout";
 import Shop from "../Shop/Shop";
+import ItemDetails from "../ItemDetails/ItemDetails";
 import Cart from "../Cart/Cart";
 import Login from "../Login/Login";
 import Checkout from "../Checkout/Checkout";
@@ -50,7 +52,10 @@ export default function App()
             <Header userData={userData} setUserData={setUserData} cart={cart.cartArr} />
             <BrowserRouter>
                 <Routes>
-                    <Route exact path="/" element={<Shop addToCart={cartOperations.add} />} />
+                    <Route path="/" element={<ShopLayout />} >
+                        <Route exact path="/" element={<Shop addToCart={cartOperations.add} />} />
+                        <Route exact path="/item/:id" element={<ItemDetails />} />
+                    </Route>
                     <Route exact path="/cart" element={<Cart cart={cart.cartArr} cartOperations={cartOperations} />} />
                     <Route exact path="/checkout" element={checkoutTarget} />
                     <Route exact path="/login" element={loginTarget} />

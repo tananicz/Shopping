@@ -7,7 +7,7 @@ export default function CartPreview(props)
 
     return (
         <div className="cartPreview">
-            <div className="iconContainer"><a href="/cart"><img className="cartIcon" src="cart_icon.png" alt="cart icon" /></a></div>
+            <div className="iconContainer"><a href="/cart"><img className="cartIcon" src="/cart_icon.png" alt="cart icon" /></a></div>
             <div>You have <strong>{itemCount} item{ itemCount > 1 && "s"}</strong> in your cart</div>
         </div>
     );

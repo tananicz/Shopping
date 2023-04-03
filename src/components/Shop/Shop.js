@@ -1,12 +1,14 @@
 import React from "react";
 import Product from "../Product/Product";
 import OptionsBar from "../OptionsBar/OptionsBar";
-import CategoriesPanel from "../CategoriesPanel/CategoriesPanel";
 import Pagination from "../Pagination/Pagination";
+import { useOutletContext } from "react-router-dom";
 import "./Shop.css"
 
 export default function Shop(props)
 {
+    const [displayOpts, setDisplayOpts] = useOutletContext();
+
     function sortFunction(method, item1, item2)
     {
         switch (method) 
@@ -21,14 +23,6 @@ export default function Shop(props)
                 return item1.title.localeCompare(item2.title);
         }
     }
-
-    const [displayOpts, setDisplayOpts] = React.useState({
-        currentPage: 1,
-        itemsPerPage: 10,
-        sortBy: "Name ASC",
-        category: "all",
-        products: []
-    });
 
     const totalPages = Math.ceil(displayOpts.products.length / displayOpts.itemsPerPage);
     const apiUrl = displayOpts.category === "all" ? "https://fakestoreapi.com/products" : ("https://fakestoreapi.com/products/category/" + displayOpts.category);
@@ -67,9 +61,6 @@ export default function Shop(props)
     }
 
     return (
-        <div className="shopDiv">
-            <CategoriesPanel currentCat={displayOpts.category} setOpts={setDisplayOpts} />
-            {itemsElement}
-        </div>
+        <>{itemsElement}</>
     )
 }
