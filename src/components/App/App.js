@@ -50,7 +50,7 @@ export default function App()
             <Header userData={userData} setUserData={setUserData} cart={cart.cartArr} />
             <BrowserRouter>
                 <Routes>
-                    <Route exact path="/" element={<Shop addToCart={cartOperations.add} />} />
+                    <Route exact path="/" element={<Shop cart={cart.cartArr} addToCart={cartOperations.add} />} />
                     <Route exact path="/cart" element={<Cart cart={cart.cartArr} cartOperations={cartOperations} />} />
                     <Route exact path="/checkout" element={checkoutTarget} />
                     <Route exact path="/login" element={loginTarget} />

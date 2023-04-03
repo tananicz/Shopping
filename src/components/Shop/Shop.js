@@ -72,7 +72,7 @@ export default function Shop(props)
         <div className="shopDiv">
             <CategoriesPanel currentCat={displayOpts.category} setOpts={setDisplayOpts} />
             {itemsElement}
-            {displayOpts.selectedProduct > 0 && <ItemDetailsModal productId={displayOpts.selectedProduct} setOpts={setDisplayOpts} />}
+            {displayOpts.selectedProduct > 0 && <ItemDetailsModal productId={displayOpts.selectedProduct} setOpts={setDisplayOpts} cart={props.cart} addToCart={props.addToCart} />}
         </div>
     )
 }

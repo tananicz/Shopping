@@ -15,17 +15,20 @@ export default function useCart()
         });
     }
 
-    function addItem(newProduct)
+    function addItem(product)
     {
-        if (!cart.cartArr.map(item => item.id).includes(newProduct.id))
-        {
-            setSessionCart(prevCart => {
-                return {
-                    ...prevCart,
-                    cartArr: JSON.parse(JSON.stringify(prevCart.cartArr)).concat(newProduct)
-                };
-            });
-        }
+        setSessionCart(prevCart => {
+            const updatedCart = JSON.parse(JSON.stringify(prevCart));
+            if (prevCart.cartArr.map(item => item.id).includes(product.id))
+            {
+                updatedCart.cartArr.find(item => item.id === product.id).quantity++;   
+            }
+            else
+            {
+                updatedCart.cartArr.push({ ...product, quantity: 1 });
+            }
+            return updatedCart;
+        });
     }
 
     function updateItem(itemToUpdate)

@@ -11,19 +11,19 @@ export default function ItemDetailsModal(props)
     if (itemData.id)
     {
         detailsJSX = <>
-            <p className="itemTitle">{itemData.title}</p>
+            <div className="itemTitle">{itemData.title}</div>
             <div className="imageWrap">
                 <p className="itemImage"><img src={itemData.image} alt={itemData.title} /></p>
             </div>
-            <p className="itemCategory">Category: {capitalize(itemData.category)}</p>
-            <p className="itemDescription">
+            <div className="itemCategory">Category: {capitalize(itemData.category)}</div>
+            <div className="itemDescription">
                 <p className="descriptionLabel">Description:</p>
                 <p className="descriptionText">{itemData.description}</p>
-            </p>
-            <p className="itemRating">
+            </div>
+            <div className="itemRating">
                 Rating: <span className="ratingVal">{itemData.rating.rate}</span> (per <span className="ratingCount">{itemData.rating.count}</span> votes)
-            </p>
-            <p className="itemPrice">${itemData.price}</p>
+            </div>
+            <div className="itemPrice">${itemData.price}</div>
         </>;
     }
 
@@ -57,18 +57,22 @@ export default function ItemDetailsModal(props)
         };
     }, [itemDetailsAPIUrl]);
 
-    console.log(itemData);
-
     return (
         <dialog className="itemDetailsDialog" onClose={handleCloseDialog}>
             <div className="itemDetailsDiv">
                 {detailsJSX}
             </div>
             <div className="dialogButtons">
-                <button className="close" onClick={(e) => {
+                <button className="closeBtn" onClick={(e) => {
                     e.stopPropagation();
                     handleCloseDialog();
                 }}>Close</button>
+                {itemData.id && 
+                    <div>
+                        <button className="addToCartBtn" onClick={() => props.addToCart(itemData)}>Add to cart</button>
+                        { props.cart.length > 0 && <a href="/cart"><button className="showCartBtn">Show cart ({props.cart.reduce((accumulator, currentVal) => accumulator + currentVal.quantity, 0)})</button></a>}
+                    </div>
+                }
             </div>
         </dialog>
     );
