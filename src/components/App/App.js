@@ -54,7 +54,7 @@ export default function App()
                 <Routes>
                     <Route path="/" element={<ShopLayout />} >
                         <Route exact path="/" element={<Shop addToCart={cartOperations.add} />} />
-                        <Route exact path="/item/:id" element={<ItemDetails />} />
+                        <Route exact path="/item/:id" element={<ItemDetails cart={cart.cartArr} addToCart={cartOperations.add} />} />
                     </Route>
                     <Route exact path="/cart" element={<Cart cart={cart.cartArr} cartOperations={cartOperations} />} />
                     <Route exact path="/checkout" element={checkoutTarget} />

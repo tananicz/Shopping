@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Product.css"
 
 export default function Product(props)
@@ -12,7 +13,7 @@ export default function Product(props)
                 <img alt="" className="productImage" src={product.image} />
             </div>
             <div className="detailsDiv">
-                <p className="productName">{product.title}</p>
+                <p className="productName"><Link to={"/item/" + product.id}>{product.title}</Link></p>
                 <p className="productCategory">{product.category}</p>
             </div>
             <div className="priceDiv">

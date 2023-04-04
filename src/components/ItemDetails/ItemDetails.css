@@ -1,0 +1,89 @@
+.detailsWrapper {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.itemDetailsDiv {
+    width: 100%;
+}
+
+.loadingAnimationDiv {
+    text-align: center;
+}
+
+.itemDetailsDiv > div {
+    margin: 20px 0 10px 0;
+}
+
+.itemName {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.itemDetailsCategory {
+    color: #777;
+}
+
+div > .itemImage {
+    margin: 20px 0 10px 0;
+}
+
+.itemImage {
+    max-width: 400px;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+}
+
+.ratingsDiv .rating {
+    font-weight: bold;
+}
+
+.buttonsDiv {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttonsDiv button {
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.buttonsDiv button.return {
+    width: 150px;
+    padding: 15px;
+    border: none;
+    background-color: #777;
+    color: white;
+}
+
+.buttonsDiv button.return:hover {
+    background-color: #444;
+}
+
+.buttonsDiv button.add {
+    width: 150px;
+    padding: 15px;
+    border: none;
+    background-color: rgb(255, 119, 56);
+    color: white;
+}
+
+.buttonsDiv button.add:hover {
+    background-color: rgb(180, 57, 0);
+}
+
+.addToCartSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addToCartSection .cartStats {
+    font-size: 13px;
+}
