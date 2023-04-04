@@ -83,7 +83,7 @@ export default function ItemDetails(props)
                 <Link to="/"><button className="return">Return to shop</button></Link>
                 {Number.isInteger(itemData.id) && 
                     <div className="addToCartSection">
-                        <button className="add" onClick={() => { addToCart({ ...itemData, quantity: 1 }); }}>Add to cart</button>
+                        <button className="add" onClick={() => { addToCart(itemData); }}>Add to cart</button>
                         {itemsInCart > 0 && <p className="cartStats">{itemsInCart} item{itemsInCart === 1 ? "" : "s"} already added</p>}
                     </div>
                 }

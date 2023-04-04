@@ -18,7 +18,7 @@ export default function Product(props)
             </div>
             <div className="priceDiv">
                 <p className="productPrice">${product.price}</p>
-                <p><button onClick={() => { addToCart( { ...product, quantity: 1 }); }}>Add to cart</button></p>
+                <p><button onClick={() => { addToCart(product); }}>Add to cart</button></p>
             </div>
         </div>
     );
