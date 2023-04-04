@@ -1,5 +1,9 @@
 A simple shop frontend made in React (using Create React App) that lets the user to add an item to a cart, see the contents of the cart and proceed to checkout (no payment implemented)
 
+There are two branches in this repo:
+1) master - here choosing an item in a shop redirects to a new page where item's details can be seen
+2) dialog - in this case choosing an item in a shop opens a dialog box with item's details
+
 Additional requirements:
 - React Router (web version)
 - Express web framework and Cors
